@@ -18,7 +18,7 @@ var join2 = function () {
       $.cookie("gameid", gameId);
       $.cookie("userid", data.userid);
       $.cookie("username", userName);
-      window.location.href = "?gameid=" + gameId;
+      window.location.reload();
     }
     else if (!data.success)
       $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + data.message + '</div>'));
