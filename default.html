@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <title>Github Planning Poker</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row" style="margin-bottom: 25px;">
+        <div class="header text-center"><h1>Github Planning Poker</h1></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div id="message" class="col-sm-8"></div>
+        <div class="col-sm-2"></div>
+      </div>
+      <div id="view-container" class="row">
+
+      </div>
+    </div>
+
+    <!-- COOKIES -->
+    <div style="position: fixed; left: 0; bottom: 0;">
+      <script type="text/javascript">
+        var cookies = $.cookie();
+        
+        document.write("COOKIES:" + JSON.stringify(cookies));
+      </script>
+    </div>
+
+    <script type="text/javascript">
+      var getParameterByName = function (name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      };
+
+      var gameId = getParameterByName("gameid");
+      var latestGameId = $.cookie("gameid");
+      var userId = $.cookie("userid");
+      var userName = $.cookie("username");
+      var ajaxUrl = "http://ghpp.mikaelec.com/";
+      var descriptionInterval;
+      var voteInterval;
+
+      $(document).ready(function () {
+        if (gameId == "")
+          $("div#view-container").load("html/start.html", function () {
+            $("div#panel-create button").on("click", create);
+            $("div#panel-join button").on("click", join);
+          });
+        else if (userId === undefined || !(gameId == latestGameId))
+          $("div#view-container").load("html/join2.html", function () {
+            $("div#panel-join2 button").on("click", join2);
+          });
+        else
+          $("div#view-container").load("html/game.html", function () {
+            $("input#game-id").val(gameId);
+
+            descriptionInterval = startUpdate(descriptionUpdater);
+            voteInterval = startUpdate(voteUpdater);
+
+            $("div#description").on("click", "div.description p", function () {
+              stopUpdate(descriptionInterval);
+
+              var div = $("div#description div.description");
+              var p = $(this).detach();
+              var description = p.html() == "[No description]" ? "" : p.html();
+
+              div.data("p", p);
+              div.append($('<textarea class="form-control" rows="3">' + description + '</textarea>'));
+
+              var btnGroup = $('<div class="btn-group" style="margin-top: 10px;"></div>');
+              btnGroup.append($('<button type="button" class="btn btn-success save"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>'));
+              btnGroup.append($('<button type="button" class="btn btn-default cancel"><span class="glyphicon glyphicon-floppy-remove"></span> Cancel</button>'));
+              div.append(btnGroup);
+              $("div#description div.description textarea").focus();
+            });
+
+            $("div#description").on("click", "button.save", function () {
+              changeDescription($("div#description div.description textarea").val());
+            });
+
+            $("div#description").on("click", "button.cancel", function () {
+              var div = $("div#description div.description");
+              div.find("div.btn-group").remove();
+              div.find("textarea").remove();
+              div.append(div.data("p"));
+
+              descriptionInterval = startUpdate(descriptionUpdater);
+            });
+
+            $("button#clear-description").on("click", clearDescription);
+            $("button#clear-votes").on("click", clearVotes);
+            $("button#copy-game-id").on("click", function() { $("input#game-id").select() });
+
+            $("div#votes").on("click", "div.user", function () {
+              $("div#card-modal").modal("show");
+            });
+
+            $("div#card-modal").on("click", "div.pickable", function () {
+              $("div#card-modal").modal("hide");
+              changeVote($(this).find("div.poker-card").attr("data-value"));
+            });
+
+          });
+      });
+    </script>
+    <script type="text/javascript" src="js/start.js"></script>
+    <script type="text/javascript" src="js/join2.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+  </body>
+</html>
