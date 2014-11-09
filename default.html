@@ -26,17 +26,7 @@
       <div id="view-container" class="row">
 
       </div>
-    </div>
-
-    <!-- COOKIES -->
-    <div style="position: fixed; left: 0; bottom: 0;">
-      <script type="text/javascript">
-        var cookies = $.cookie();
-        
-        document.write("COOKIES:" + JSON.stringify(cookies));
-      </script>
-    </div>
-    
+    </div>    
     <script type="text/javascript" src="js/external/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="js/external/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/external/bootstrap.min.js"></script>
@@ -52,7 +42,7 @@
       var latestGameId = $.cookie("gameid");
       var userId = $.cookie("userid");
       var userName = $.cookie("username");
-      var ajaxUrl = "http://ghpp.mikaelec.com/";
+      var ajaxUrl = "/api/";
       var descriptionInterval;
       var voteInterval;
 
@@ -122,5 +112,15 @@
     <script type="text/javascript" src="js/start.js"></script>
     <script type="text/javascript" src="js/join2.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
+    
+    <!-- COOKIES -->
+    <div style="position: fixed; left: 0; bottom: 0;">
+      <script type="text/javascript">
+        var cookies = $.cookie();
+        
+        document.write("COOKIES:" + JSON.stringify(cookies));
+      </script>
+    </div>
+    <!-- COOKIES -->
   </body>
 </html>
