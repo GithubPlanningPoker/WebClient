@@ -41,7 +41,7 @@
       var gameId = getParameterByName("gameid");
       var latestGameId = $.cookie("gameid");
       var userId = $.cookie("userid");
-      var userName = $.cookie("username");
+      var username = $.cookie("username");
       var ajaxUrl = "/api/";
       var descriptionInterval;
       var voteInterval;
@@ -95,7 +95,7 @@
 
             $("button#clear-description").on("click", clearDescription);
             $("button#clear-votes").on("click", clearVotes);
-            $("button#copy-game-id").on("click", function() { $("input#game-id").select() });
+            $("button#copy-game-id").on("click", function () { $("input#game-id").select() });
 
             $("div#votes").on("click", "div.user", function () {
               $("div#card-modal").modal("show");

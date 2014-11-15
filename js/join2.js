@@ -1,8 +1,8 @@
 var join2 = function () {
-  var userName = $("div#panel-join2 input.display-name").val();
+  var username = $("div#panel-join2 input.display-name").val();
 
   var obj = {};
-  obj.name = userName;
+  obj.username = username;
 
   $.ajax({
     type: "POST",
@@ -13,14 +13,18 @@ var join2 = function () {
     dataType: "json",
     cache: false
   })
-  .done(function (data) {
-    if (data.success) {
-      $.cookie("gameid", gameId);
-      $.cookie("userid", data.userid);
-      $.cookie("username", userName);
-      window.location.reload();
-    }
-    else if (!data.success)
-      $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + data.message + '</div>'));
+  .done(function (data, textStatus, jqxhr) {
+    $.cookie("gameid", gameId);
+    $.cookie("userid", data.userId);
+    $.cookie("username", username);
+    window.location.reload();
+  })
+  .fail(function (jqxhr, textStatus, errorThrown) {
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
+    else
+      message = jqxhr.responseText;
+    $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
   });
 }

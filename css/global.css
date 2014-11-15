@@ -32,3 +32,11 @@ div.poker-card {
   -ms-user-select: none;
   user-select: none;
 }
+
+div.description, div.title {
+  cursor: pointer;
+}
+
+div.description:hover, div.title:hover {
+  background-color: #f5f5f5;
+}
