@@ -15,6 +15,14 @@
             Github Planning Poker
           </a>
         </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a class="navbar-link" href="/settings.html">
+              <span class="glyphicon glyphicon-cog"></span>
+              Settings
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
     <div class="container-fluid">
@@ -28,7 +36,6 @@
       </div>
     </div>    
     <script type="text/javascript" src="js/external/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/external/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/external/bootstrap.min.js"></script>
     <script type="text/javascript">
       var getParameterByName = function (name) {
@@ -39,9 +46,9 @@
       };
 
       var gameId = getParameterByName("gameid");
-      var latestGameId = $.cookie("gameid");
-      var userId = $.cookie("userid");
-      var username = $.cookie("username");
+      var latestGameId = sessionStorage.gameId;
+      var userId = sessionStorage.userId;
+      var username = sessionStorage.username;
       var ajaxUrl = "/api/";
       var titleInterval;
       var descriptionInterval;
@@ -50,11 +57,17 @@
       $(document).ready(function () {
         if (gameId == "")
           $("div#view-container").load("html/start.html", function () {
+            if (username !== undefined) {
+              $("div#panel-create input.display-name").val(username);
+              $("div#panel-join input.display-name").val(username);
+            }
             $("div#panel-create button").on("click", create);
             $("div#panel-join button").on("click", join);
           });
         else if (userId === undefined || !(gameId == latestGameId))
           $("div#view-container").load("html/join2.html", function () {
+            if (username !== undefined)
+              $("div#panel-join2 input.display-name").val(username);
             $("div#panel-join2 button").on("click", join2);
           });
         else
@@ -145,14 +158,12 @@
     <script type="text/javascript" src="js/join2.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
     
-    <!-- COOKIES -->
+    <!-- SESSION STORAGE -->
     <div style="position: fixed; left: 0; bottom: 0;">
       <script type="text/javascript">
-        var cookies = $.cookie();
-        
-        document.write("COOKIES:" + JSON.stringify(cookies));
+        document.write("SESSION:" + JSON.stringify(sessionStorage));
       </script>
     </div>
-    <!-- COOKIES -->
+    <!-- SESSION STORAGE -->
   </body>
 </html>

@@ -14,9 +14,9 @@ var join2 = function () {
     cache: false
   })
   .done(function (data, textStatus, jqxhr) {
-    $.cookie("gameid", gameId);
-    $.cookie("userid", data.userId);
-    $.cookie("username", username);
+    sessionStorage.gameId = gameId;
+    sessionStorage.userId = data.userId;
+    sessionStorage.username = username;
     window.location.reload();
   })
   .fail(function (jqxhr, textStatus, errorThrown) {

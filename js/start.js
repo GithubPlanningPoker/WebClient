@@ -15,9 +15,9 @@ var create = function () {
   })
   .done(function (data, textStatus, jqxhr) {
     console.log(data);
-    $.cookie("gameid", data.gameId);
-    $.cookie("userid", data.userId);
-    $.cookie("username", username);
+    sessionStorage.gameId = data.gameId;
+    sessionStorage.userId = data.userId;
+    sessionStorage.username = username;
     window.location.href = "?gameid=" + data.gameId;
   })
   .fail(function (jqxhr, textStatus, errorThrown) {
@@ -47,9 +47,9 @@ var join = function () {
     cache: false
   })
   .done(function (data, textStatus, jqxhr) {
-    $.cookie("gameid", gameId);
-    $.cookie("userid", data.userId);
-    $.cookie("username", username);
+    sessionStorage.gameId = gameId;
+    sessionStorage.userId = data.userId;
+    sessionStorage.username = username;
     window.location.href = "?gameid=" + gameId;
   })
   .fail(function (jqxhr, textStatus, errorThrown) {
