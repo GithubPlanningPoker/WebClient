@@ -43,6 +43,7 @@
       var userId = $.cookie("userid");
       var username = $.cookie("username");
       var ajaxUrl = "/api/";
+      var titleInterval;
       var descriptionInterval;
       var voteInterval;
 
@@ -60,10 +61,41 @@
           $("div#view-container").load("html/game.html", function () {
             $("input#game-id").val(gameId);
 
+            titleInterval = startUpdate(titleUpdater);
             descriptionInterval = startUpdate(descriptionUpdater);
             voteInterval = startUpdate(voteUpdater);
 
-            $("div#description").on("click", "div.description p", function () {
+            $("div#description div.title").on("click", "p", function () {
+              stopUpdate(titleInterval);
+
+              var div = $("div#description div.title");
+              var p = $(this).detach();
+              var description = p.html() == "[No title]" ? "" : p.html();
+
+              div.data("p", p);
+              div.append($('<input type="text" class="form-control" value="' + description + '">'));
+
+              var btnGroup = $('<div class="btn-group" style="margin-top: 10px;"></div>');
+              btnGroup.append($('<button type="button" class="btn btn-success save"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>'));
+              btnGroup.append($('<button type="button" class="btn btn-default cancel"><span class="glyphicon glyphicon-floppy-remove"></span> Cancel</button>'));
+              div.append(btnGroup);
+              $("div#description div.title input").focus();
+            });
+
+            $("div#description div.title").on("click", "button.save", function () {
+              changeTitle($("div#description div.title input").val());
+            });
+
+            $("div#description div.title").on("click", "button.cancel", function () {
+              var div = $("div#description div.title");
+              div.find("div.btn-group").remove();
+              div.find("input").remove();
+              div.append(div.data("p"));
+
+              titleInterval = startUpdate(titleUpdater);
+            });
+
+            $("div#description div.description").on("click", "p", function () {
               stopUpdate(descriptionInterval);
 
               var div = $("div#description div.description");
@@ -80,11 +112,11 @@
               $("div#description div.description textarea").focus();
             });
 
-            $("div#description").on("click", "button.save", function () {
+            $("div#description div.description").on("click", "button.save", function () {
               changeDescription($("div#description div.description textarea").val());
             });
 
-            $("div#description").on("click", "button.cancel", function () {
+            $("div#description div.description").on("click", "button.cancel", function () {
               var div = $("div#description div.description");
               div.find("div.btn-group").remove();
               div.find("textarea").remove();

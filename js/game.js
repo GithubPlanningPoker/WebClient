@@ -7,6 +7,26 @@ var stopUpdate = function (func) {
   clearInterval(func);
 }
 
+var titleUpdater = function () {
+  $.ajax({
+    type: "GET",
+    url: ajaxUrl + "game/" + gameId + "/title",
+    dataType: "json",
+    cache: false
+  })
+  .done(function (data, textStatus, jqxhr) {
+      $("div#description div.title p").html( data.title === null || data.title == "" ? "[No title]" : data.title );
+    })
+  .fail(function (jqxhr, textStatus, errorThrown) {
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
+    else
+      message = jqxhr.responseText;
+    $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
+  });
+};
+
 var descriptionUpdater = function () {
   $.ajax({
     type: "GET",
@@ -63,7 +83,7 @@ var changeDescription = function (description) {
 
   $.ajax({
     type: "PUT",
-    url: ajaxUrl + "game/" + gameId + "/description/",
+    url: ajaxUrl + "game/" + gameId + "/description",
     processData: false,
     data: JSON.stringify(obj),
     contentType: "application/json; charset=utf-8",
@@ -78,7 +98,42 @@ var changeDescription = function (description) {
     descriptionInterval = startUpdate(descriptionUpdater);
   })
   .fail(function (jqxhr, textStatus, errorThrown) {
-    var message = jqxhr.responseJSON.Message;
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
+    else
+      message = jqxhr.responseText;
+    $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
+  });
+}
+
+var changeTitle = function (title) {
+  var obj = {};
+  obj.title = title;
+
+  $.ajax({
+    type: "PUT",
+    url: ajaxUrl + "game/" + gameId + "/title",
+    processData: false,
+    data: JSON.stringify(obj),
+    contentType: "application/json; charset=utf-8",
+    cache: false
+  })
+  .done(function (data, textStatus, jqxhr) {
+    console.log("whaddap");
+    var div = $("div#description div.title");
+    div.find("div.btn-group").remove();
+    div.find("input").remove();
+    div.append($('<p class="form-control-static">' + title + '</p>'));
+
+    titleInterval = startUpdate(titleUpdater);
+  })
+  .fail(function (jqxhr, textStatus, errorThrown) {
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
+    else
+      message = jqxhr.responseText;
     $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
   });
 }
@@ -99,50 +154,80 @@ var changeVote = function (vote) {
   .done(function (data, textStatus, jqxhr) {
     })
   .fail(function (jqxhr, textStatus, errorThrown) {
-    var message = jqxhr.responseJSON.Message;
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
+    else
+      message = jqxhr.responseText;
     $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
   });
 }
 
 var clearDescription = function () {
+  var obj = {};
+  obj.title = "";
+  obj.description = "";
+
   $.ajax({
-    type: "DELETE",
+    type: "PUT",
     url: ajaxUrl + "game/" + gameId + "/description",
-    dataType: "json",
+    processData: false,
+    data: JSON.stringify(obj),
+    contentType: "application/json; charset=utf-8",
     cache: false
   })
-  .done(function (data) {
-    if (data.success) {
-
-    }
-    else if (!data.success)
-      $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + data.message + '</div>'));
+  .done(function (data, textStatus, jqxhr) {
+  })
+  .fail(function (jqxhr, textStatus, errorThrown) {
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
     else
-      $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + 'Shit went haywire!' + '</div>'));
+      message = jqxhr.responseText;
+    $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
+  });
+
+  $.ajax({
+    type: "PUT",
+    url: ajaxUrl + "game/" + gameId + "/title",
+    processData: false,
+    data: JSON.stringify(obj),
+    contentType: "application/json; charset=utf-8",
+    cache: false
+  })
+  .done(function (data, textStatus, jqxhr) {
+  })
+  .fail(function (jqxhr, textStatus, errorThrown) {
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
+    else
+      message = jqxhr.responseText;
+    $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
   });
 }
 
 var clearVotes = function () {
   var obj = {};
-  obj.userid = userId;
+  obj.userId = userId;
 
   $.ajax({
-    type: "DELETE",
-    url: ajaxUrl + "game/" + gameId + "/vote",
+    type: "PUT",
+    url: ajaxUrl + "game/" + gameId + "/user",
     processData: false,
     data: JSON.stringify(obj),
     contentType: "application/json; charset=utf-8",
-    dataType: "json",
     cache: false
   })
-  .done(function (data) {
-    if (data.success) {
-
-    }
-    else if (!data.success)
-      $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + data.message + '</div>'));
+  .done(function (data, textStatus, jqxhr) {
+    })
+  .fail(function (jqxhr, textStatus, errorThrown) {
+    var message = "";
+    if (jqxhr.responseJSON !== undefined)
+      message = jqxhr.responseJSON.Message;
     else
-      $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + 'Shit went haywire!' + '</div>'));
+      message = jqxhr.responseText;
+    $("div#message").html($('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' + message + '</div>'));
   });
 }
 
