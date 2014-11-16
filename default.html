@@ -15,14 +15,16 @@
             Github Planning Poker
           </a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a class="navbar-link" href="/settings.html">
-              <span class="glyphicon glyphicon-cog"></span>
-              Settings
-            </a>
-          </li>
-        </ul>
+        <div id="nav-apikey">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="navbar-link" href="">
+                <span class="glyphicon glyphicon-cog"></span>
+                Github API key
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
     <div class="container-fluid">
@@ -55,6 +57,44 @@
       var voteInterval;
 
       $(document).ready(function () {
+        $("div#nav-apikey").on("click", "a", function (e) {
+          e.preventDefault();
+          var div = $("div#nav-apikey");
+          var ul = $(this).closest("ul").detach();
+          var form = $('<form class="navbar-form navbar-right" role="apikey"></form>');
+          var formGroup = $('<div class="form-group"></div>');
+          var input = $('<input type="text" class="form-control input-sm apikey" placeholder="Github API key">');
+          var btnGroup = $('<div class="btn-group" role="group"></div>');
+          var buttonSave = $('<button type="button" class="btn btn-success btn-sm save"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>');
+          var buttonCancel = $('<button type="button" class="btn btn-danger btn-sm cancel"><span class="glyphicon glyphicon-floppy-remove"></span> Cancel</button>');
+
+          if (localStorage.apikey !== undefined)
+            input.val(localStorage.apikey);
+
+          form.data("ul", ul);
+
+          formGroup.html(input);
+          form.html(formGroup);
+          btnGroup.html(buttonSave);
+          btnGroup.append(buttonCancel);
+          form.append(btnGroup);
+          div.html(form);
+        });
+
+        $("div#nav-apikey").on("click", "button.save", function (e) {
+          var div = $("div#nav-apikey");
+          var input = div.find("input.apikey");
+          localStorage.apikey = input.val();
+          var form = $(div.find("form"));
+          div.html(form.data("ul"));
+        });
+
+        $("div#nav-apikey").on("click", "button.cancel", function (e) {
+          var div = $("div#nav-apikey");
+          var form = $(div.find("form"));
+          div.html(form.data("ul"));
+        });
+
         if (gameId == "")
           $("div#view-container").load("html/start.html", function () {
             if (username !== undefined) {
