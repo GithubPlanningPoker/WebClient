@@ -15,8 +15,8 @@ var titleUpdater = function () {
     cache: false
   })
   .done(function (data, textStatus, jqxhr) {
-      $("div#description div.title p").html( data.title === null || data.title == "" ? "[No title]" : data.title );
-    })
+    $("div#description div.title p").text(data.title === null || data.title == "" ? "[No title]" : data.title);
+  })
   .fail(function (jqxhr, textStatus, errorThrown) {
     var message = "";
     if (jqxhr.responseJSON !== undefined)
@@ -35,7 +35,7 @@ var descriptionUpdater = function () {
     cache: false
   })
   .done(function (data, textStatus, jqxhr) {
-      $("div#description div.description p").html( data.description === null || data.description == "" ? "[No description]" : data.description );
+      $("div#description div.description p").text( data.description === null || data.description == "" ? "[No description]" : data.description );
     })
   .fail(function (jqxhr, textStatus, errorThrown) {
     var message = "";

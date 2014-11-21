@@ -16,7 +16,7 @@ var join2 = function () {
   .done(function (data, textStatus, jqxhr) {
     sessionStorage.gameId = gameId;
     sessionStorage.userId = data.userId;
-    sessionStorage.username = username;
+    localStorage.username = username;
     window.location.reload();
   })
   .fail(function (jqxhr, textStatus, errorThrown) {

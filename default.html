@@ -50,7 +50,7 @@
       var gameId = getParameterByName("gameid");
       var latestGameId = sessionStorage.gameId;
       var userId = sessionStorage.userId;
-      var username = sessionStorage.username;
+      var username = localStorage.username;
       var ajaxUrl = "/api/";
       var titleInterval;
       var descriptionInterval;
@@ -197,13 +197,5 @@
     <script type="text/javascript" src="js/start.js"></script>
     <script type="text/javascript" src="js/join2.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
-    
-    <!-- SESSION STORAGE -->
-    <div style="position: fixed; left: 0; bottom: 0;">
-      <script type="text/javascript">
-        document.write("SESSION:" + JSON.stringify(sessionStorage));
-      </script>
-    </div>
-    <!-- SESSION STORAGE -->
   </body>
 </html>

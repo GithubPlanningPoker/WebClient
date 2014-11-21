@@ -17,7 +17,7 @@ var create = function () {
     console.log(data);
     sessionStorage.gameId = data.gameId;
     sessionStorage.userId = data.userId;
-    sessionStorage.username = username;
+    localStorage.username = username;
     window.location.href = "?gameid=" + data.gameId;
   })
   .fail(function (jqxhr, textStatus, errorThrown) {
@@ -49,7 +49,7 @@ var join = function () {
   .done(function (data, textStatus, jqxhr) {
     sessionStorage.gameId = gameId;
     sessionStorage.userId = data.userId;
-    sessionStorage.username = username;
+    localStorage.username = username;
     window.location.href = "?gameid=" + gameId;
   })
   .fail(function (jqxhr, textStatus, errorThrown) {
