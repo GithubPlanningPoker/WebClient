@@ -1,49 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/global.css" />
-    <title>Github Planning Poker</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">
-            <span class="glyphicon glyphicon-home"></span>
-            Github Planning Poker
-          </a>
-        </div>
-        <div id="nav-apikey">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a class="navbar-link" href="">
-                <span class="glyphicon glyphicon-cog"></span>
-                Github API key
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <title>Github Planning Poker</title>
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-2"></div>
-        <div id="message" class="col-sm-8"></div>
-        <div class="col-sm-2"></div>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#start">
+          <span class="glyphicon glyphicon-home"></span>
+          Github Planning Poker
+        </a>
       </div>
-      <div id="container" class="row">
-
+      <div id="nav-apikey">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a class="navbar-link" href="#options">
+              <span class="glyphicon glyphicon-cog"></span>
+              Options
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>    
-    <script type="text/javascript" src="js/external/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/external/underscore-min.js"></script>
-    <script type="text/javascript" src="js/external/backbone-min.js"></script>
-    <script type="text/javascript" src="js/external/backbone.babysitter.min.js"></script>
-    <script type="text/javascript" src="js/external/backbone.wreqr.min.js"></script>
-    <script type="text/javascript" src="js/external/backbone.marionette.min.js"></script>
-    <script type="text/javascript" src="js/external/bootstrap.min.js"></script>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div id="message" class="col-sm-8"></div>
+      <div class="col-sm-2"></div>
+    </div>
+    <div id="container" class="row">
 
-  </body>
+    </div>
+  </div>
+
+<script id="start-layout" type="text/html">
+<div class="col-sm-4 col-sm-offset-2">
+  <div id="panel-create" class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title"><span class="glyphicon glyphicon-plus"></span> Create game</div>
+    </div>
+    <div class="panel-body">
+      <form role="form">
+        <div class="form-group">
+          <label>Display name:</label>
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control display-name" placeholder="Enter display name" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span> Create</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-sm-4">
+  <div id="panel-join" class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title"><span class="glyphicon glyphicon-arrow-right"></span> Join game</div>
+    </div>
+    <div class="panel-body">
+      <form role="form">
+        <div class="form-group">
+          <label>Game id:</label>
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-link"></span></div>
+            <input type="text" class="form-control game-id" placeholder="Enter game id" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Display name:</label>
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control display-name" placeholder="Enter display name" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-arrow-right"></span> Join</button>
+      </form>
+    </div>
+  </div>
+</div>
+</script>
+<script id="game-layout" type="text/html">
+  <h1>Game</h1>
+</script>
+
+<script type="text/javascript" src="js/external/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/external/underscore-min.js"></script>
+<script type="text/javascript" src="js/external/backbone-min.js"></script>
+<script type="text/javascript" src="js/external/backbone.babysitter.min.js"></script>
+<script type="text/javascript" src="js/external/backbone.wreqr.min.js"></script>
+<script type="text/javascript" src="js/external/backbone.marionette.min.js"></script>
+<script type="text/javascript" src="js/external/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/routers/AppRouter.js"></script>
+<script type="text/javascript" src="js/apps/App.js"></script>
+<script type="text/javascript" src="js/views/StartLayout.js"></script>
+<script type="text/javascript" src="js/views/GameLayout.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
 </html>
