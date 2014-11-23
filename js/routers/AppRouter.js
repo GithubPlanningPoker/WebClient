@@ -9,11 +9,15 @@ ghpp.routers.AppRouter = Backbone.Router.extend({
 	routes: {
 		'': 'start',
 		'start': 'start',
+		'join/:gameId': 'join',
 		'game/:gameId': 'game',
 		'*default': 'default'
 	},
 	start: function() {
 		this.container.show(new ghpp.views.StartLayout());
+	},
+	join: function(gameId) {
+		this.container.show(new ghpp.views.JoinLayout());
 	},
 	game: function(gameId) {
 		this.container.show(new ghpp.views.GameLayout());

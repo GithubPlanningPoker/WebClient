@@ -7,6 +7,7 @@
   <title>Github Planning Poker</title>
 </head>
 <body>
+  <!-- NAVBAR -->
   <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -27,6 +28,7 @@
       </div>
     </div>
   </nav>
+  <!-- MAIN CONTAINER -->
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2"></div>
@@ -34,13 +36,16 @@
       <div class="col-sm-2"></div>
     </div>
     <div id="container" class="row">
-
+      <!-- MAIN CONTENT -->
     </div>
   </div>
 
+<!-- TEMPLATES -->
+
+<!-- START LAYOUT -->
 <script id="start-layout" type="text/html">
 <div class="col-sm-4 col-sm-offset-2">
-  <div id="panel-create" class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title"><span class="glyphicon glyphicon-plus"></span> Create game</div>
     </div>
@@ -59,7 +64,7 @@
   </div>
 </div>
 <div class="col-sm-4">
-  <div id="panel-join" class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title"><span class="glyphicon glyphicon-arrow-right"></span> Join game</div>
     </div>
@@ -69,7 +74,7 @@
           <label>Game id:</label>
           <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-link"></span></div>
-            <input type="text" class="form-control game-id" placeholder="Enter game id" />
+            <input type="text" class="form-control" placeholder="Enter game id" />
           </div>
         </div>
         <div class="form-group">
@@ -85,8 +90,139 @@
   </div>
 </div>
 </script>
+
+<!-- GAME LAYOUT -->
 <script id="game-layout" type="text/html">
-  <h1>Game</h1>
+<div class="col-sm-8 col-sm-offset-2">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <div class="panel-title">
+        <span class="glyphicon glyphicon-tower"></span> Game
+        <div class="input-group pull-right" style="min-width: 350px; width: 25%;">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">@</button>
+          </span>
+          <input type="text" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <div class="panel-title">
+            <span class="glyphicon glyphicon-pencil"></span> Description
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Issue</button>
+              <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Clear</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="form-group title">
+            <label>Title</label>
+            <p class="form-control-static">[No title]</p>
+          </div>
+          <div class="form-group description">
+            <label>Description</label>
+            <p class="form-control-static">[No description]</p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <div class="panel-title">
+            <span class="glyphicon glyphicon-bell"></span> Current votes
+            <button type="button" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-remove"></span> Clear</button>
+          </div>
+        </div>
+        <div class="panel-body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VOTE MODAL -->
+<div id="vote-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="vote-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="vote-modal-label">Vote</h4>
+      </div>
+      <div class="modal-body">
+        <div class="vote pickable">
+          <div class="poker-card" data-value="0">0</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="half">&frac12;</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="1">1</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="2">2</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="3">3</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="5">5</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="8">8</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="13">13</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="20">20</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="40">40</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="100">100</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="inf">&infin;</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="?">?</div>
+        </div>
+        <div class="vote pickable">
+          <div class="poker-card" data-value="break"><span class="glyphicon glyphicon-time"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<!-- JOIN LAYOUT -->
+<script id="join-layout" type="text/html">
+<div class="col-sm-4 col-sm-offset-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <span class="glyphicon glyphicon-user"></span> Join game
+      </div>
+    </div>
+    <div class="panel-body">
+      <form role="form">
+        <div class="form-group">
+          <label>Display name:</label>
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control display-name" placeholder="Enter display name" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-arrow-right"></span> Join</button>
+      </form>
+    </div>
+  </div>
+</div>
 </script>
 
 <script type="text/javascript" src="js/external/jquery-1.11.1.min.js"></script>
