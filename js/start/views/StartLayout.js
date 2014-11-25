@@ -17,16 +17,23 @@ App.module("Start.Views", function(Views, App, Backbone, Marionette, $, _) {
 
 		onShow: function() {
 			var username = App.Shared.Models.Settings.instance.get("username");
-			this.ui.newGameUsername.val(username);
-			this.ui.joinGameUsername.val(username);
+			if (username !== undefined && username !== null && username !== "") {
+				this.ui.newGameUsername.val(username);
+				this.ui.joinGameUsername.val(username);
+			}
 		},
 
 		newGame: function(e) {
 			e.preventDefault();
+			var username = this.ui.newGameUsername.val();
+			App.Start.Controller.newGame(username);
 		},
 
 		joinGame: function(e) {
 			e.preventDefault();
+			var gameId = this.ui.joinGameGameId.val();
+			var username = this.ui.joinGameUsername.val();
+			App.Start.Controller.joinGame(gameId, username);
 		}
 	});
 });
