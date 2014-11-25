@@ -233,11 +233,15 @@
 <script type="text/javascript" src="js/external/backbone.marionette.min.js"></script>
 <script type="text/javascript" src="js/external/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="js/routers/AppRouter.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/routers/StartRouter.js"></script>
+<script type="text/javascript" src="js/routers/GameRouter.js"></script>
 <script type="text/javascript" src="js/views/StartLayout.js"></script>
 <script type="text/javascript" src="js/views/GameLayout.js"></script>
 <script type="text/javascript" src="js/views/JoinLayout.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript">
+  App.start();
+</script>
 
 <script type="text/javascript">
   //Stuff for testing
