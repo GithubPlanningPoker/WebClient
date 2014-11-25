@@ -12,6 +12,5 @@ App.module("Model", function(Model, App, Backbone, Marionette, $, _){
     var settings = new Model.Settings();
     settings.fetch();
     App.Model.Settings.instance = settings;
-    console.log(settings.attributes);
   });
 });
