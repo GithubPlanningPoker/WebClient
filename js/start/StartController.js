@@ -1,4 +1,4 @@
-App.module("Start", function(Start, App, Backbone, Marionette, $, _){
+App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
   Start.Controller = {
     show: function(){
       App.container.show(new App.Start.Views.StartLayout());
@@ -10,6 +10,7 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _){
 
     joinGame: function(gameId, username) {
     	console.log("Joining: " + gameId + " as: " + username);
+      App.trigger("game:show", gameId);
     }
   };
 });

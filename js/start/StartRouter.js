@@ -1,4 +1,4 @@
-App.module("Start", function(Start, App, Backbone, Marionette, $, _){
+App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
 
   Start.Router = Backbone.Marionette.AppRouter.extend({
     appRoutes: {
@@ -14,7 +14,7 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _){
   }
 
   App.on("start:show", function() {
-    API.showStart();
+    Backbone.history.navigate("start", {trigger: true});
   });
 
   App.addInitializer(function() {

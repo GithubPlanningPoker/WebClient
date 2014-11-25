@@ -1,4 +1,4 @@
-App.module("Game", function(Game, App, Backbone, Marionette, $, _){
+App.module("Game", function(Game, App, Backbone, Marionette, $, _) {
 
   Game.Router = Backbone.Marionette.AppRouter.extend({
     appRoutes: {
@@ -13,7 +13,7 @@ App.module("Game", function(Game, App, Backbone, Marionette, $, _){
   }
 
   App.on("game:show", function(gameId) {
-    API.showGame(gameId);
+    Backbone.history.navigate("game/" + gameId, {trigger: true});
   });
 
   App.addInitializer(function() {
