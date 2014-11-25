@@ -9,7 +9,7 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _){
 
   var API = {
     showStart: function() {
-      App.Controller.Start.show();
+      App.Start.Controller.show();
     }
   }
 

@@ -8,7 +8,7 @@ App.module("Game", function(Game, App, Backbone, Marionette, $, _){
 
   var API = {
     showGame: function(gameId) {
-      App.container.show(new App.GameLayout());
+      App.container.show(new App.Game.Views.GameLayout());
     }
   }
 
