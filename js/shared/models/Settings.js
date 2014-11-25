@@ -1,5 +1,5 @@
-App.module("Model", function(Model, App, Backbone, Marionette, $, _){
-  Model.Settings = Backbone.Model.extend({
+App.module("Shared.Models", function(Models, App, Backbone, Marionette, $, _){
+  Models.Settings = Backbone.Model.extend({
     localStorage: new Backbone.LocalStorage("settings"),
     defaults: {
       id: 1, //Is needed for fetch/save to work
@@ -9,8 +9,8 @@ App.module("Model", function(Model, App, Backbone, Marionette, $, _){
   });
 
   App.addInitializer(function() {
-    var settings = new Model.Settings();
+    var settings = new Models.Settings();
     settings.fetch();
-    App.Model.Settings.instance = settings;
+    App.Shared.Models.Settings.instance = settings;
   });
 });

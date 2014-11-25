@@ -50,12 +50,12 @@
       <div class="panel-title"><span class="glyphicon glyphicon-plus"></span> Create game</div>
     </div>
     <div class="panel-body">
-      <form role="form">
+      <form id="new-game-form" role="form">
         <div class="form-group">
-          <label>Display name:</label>
+          <label for="new-game-username">Display name:</label>
           <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-            <input type="text" class="form-control display-name" placeholder="Enter display name" />
+            <input id="new-game-username" type="text" class="form-control" placeholder="Enter display name" />
           </div>
         </div>
         <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span> Create</button>
@@ -69,19 +69,19 @@
       <div class="panel-title"><span class="glyphicon glyphicon-arrow-right"></span> Join game</div>
     </div>
     <div class="panel-body">
-      <form role="form">
+      <form id="join-game-form" role="form">
         <div class="form-group">
-          <label>Game id:</label>
+          <label for="join-game-gameid">Game id:</label>
           <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-link"></span></div>
-            <input type="text" class="form-control" placeholder="Enter game id" />
+            <input id="join-game-gameid" type="text" class="form-control" placeholder="Enter game id" />
           </div>
         </div>
         <div class="form-group">
-          <label>Display name:</label>
+          <label for="join-game-username">Display name:</label>
           <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-            <input type="text" class="form-control display-name" placeholder="Enter display name" />
+            <input id="join-game-username" type="text" class="form-control" placeholder="Enter display name" />
           </div>
         </div>
         <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-arrow-right"></span> Join</button>
@@ -257,9 +257,9 @@
 <!-- DEBUG -->
 <script type="text/javascript">
   $(function () {
-    $("div#container").on("click", "button[type=submit]", function (e) {
+    /*$("div#container").on("click", "button[type=submit]", function (e) {
       e.preventDefault();
-    });
+    });*/
   });
 </script>
 </body>
