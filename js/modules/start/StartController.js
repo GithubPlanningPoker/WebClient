@@ -8,11 +8,10 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
     },
 
     newGame: function(username) {
-    	console.log("Creating game with: " + username);
+      
     },
 
     joinGame: function(gameId, username) {
-    	console.log("Joining: " + gameId + " as: " + username);
       App.trigger("game:show", gameId);
     }
   };
