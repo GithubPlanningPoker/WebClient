@@ -32,7 +32,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2"></div>
-      <div id="message" class="col-sm-8"></div>
+      <div id="alert" class="col-sm-8"></div>
       <div class="col-sm-2"></div>
     </div>
     <div id="container" class="row">
@@ -264,6 +264,14 @@
 </div>
 </script>
 
+<!-- ALERT VIEW -->
+<script id="alert-view" type="text/html">
+<div class="alert alert-dismissible <%= alertClass %>" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <%= message %>
+</div>
+</script>
+
 <!-- EXTERNAL -->
 <script type="text/javascript" src="js/external/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/external/underscore-min.js"></script>
@@ -279,6 +287,7 @@
 
 <!-- MODULES -->
 <script type="text/javascript" src="js/modules/shared/models/Preferences.js"></script>
+<script type="text/javascript" src="js/modules/shared/views/Alert.js"></script>
 <!-- start -->
 <script type="text/javascript" src="js/modules/start/StartRouter.js"></script>
 <script type="text/javascript" src="js/modules/start/StartController.js"></script>
