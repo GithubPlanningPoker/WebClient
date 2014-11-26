@@ -1,3 +1,7 @@
+div.tab-content {
+  padding: 20px;
+}
+
 div.vote {
   display: inline-block;
   margin: 10px;

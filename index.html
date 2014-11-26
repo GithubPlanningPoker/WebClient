@@ -227,26 +227,40 @@
 
 <!-- PREFERENCES LAYOUT -->
 <script id="preferences-layout" type="text/html">
-<div class="col-sm-4 col-sm-offset-4">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">
-        <span class="glyphicon glyphicon-user"></span> Join game
-      </div>
-    </div>
-    <div class="panel-body">
-      <form role="form">
-        <div class="form-group">
-          <label>Display name:</label>
-          <div class="input-group">
-            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-            <input type="text" class="form-control" placeholder="Enter display name" />
+<div role="tabpanel" class="col-sm-8 col-sm-offset-2">
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#preferences-game" aria-controls="game" role="tab" data-toggle="tab">Game</a></li>
+    <li role="presentation"><a href="#preferences-github" aria-controls="github" role="tab" data-toggle="tab">Github</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="preferences-game">
+      <form id="game-form" role="form">
+        <div class="row">
+          <div class="form-group col-sm-5 col-sm-offset-1">
+            <label for="game-apihost">API Host:</label>
+            <input id="game-apihost" type="text" class="form-control" placeholder="Enter API host address" />
+          </div>
+          <div class="form-group col-sm-5">
+            <label for="game-username">Default username:</label>
+            <input id="game-username" type="text" class="form-control" placeholder="Enter default username" />
           </div>
         </div>
-        <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-arrow-right"></span> Join</button>
+        <div class="row">
+          <button type="submit" class="btn btn-primary pull-right">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Save
+          </button>
+        </div>
       </form>
     </div>
+
+    <div role="tabpanel" class="tab-pane" id="preferences-github">
+      Github
+    </div>
   </div>
+
 </div>
 </script>
 
