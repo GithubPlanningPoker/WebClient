@@ -1,6 +1,7 @@
 App.module("Shared.Models", function(Models, App, Backbone, Marionette, $, _){
-  Models.Settings = Backbone.Model.extend({
-    localStorage: new Backbone.LocalStorage("settings"),
+  Models.Preferences = Backbone.Model.extend({
+    localStorage: new Backbone.LocalStorage("ghpp-preferences"),
+
     defaults: {
       id: 1, //Is needed for fetch/save to work
       host: "",
@@ -9,8 +10,8 @@ App.module("Shared.Models", function(Models, App, Backbone, Marionette, $, _){
   });
 
   App.addInitializer(function() {
-    var settings = new Models.Settings();
+    var settings = new Models.Preferences();
     settings.fetch();
-    App.Shared.Models.Settings.instance = settings;
+    App.Shared.Models.Preferences.instance = settings;
   });
 });

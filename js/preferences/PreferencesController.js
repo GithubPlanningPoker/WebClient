@@ -1,11 +1,10 @@
 App.module("Preferences", function(Preferences, App, Backbone, Marionette, $, _) {
   Preferences.Controller = {
-
   	view: null,
   	preferences: null,
 
     show: function() {
-    	this.preferences = App.Shared.Models.Settings.instance;
+    	this.preferences = App.Shared.Models.Preferences.instance;
     	this.view = new App.Preferences.Views.PreferencesLayout({ model: this.preferences });
       App.container.show(this.view);
     },

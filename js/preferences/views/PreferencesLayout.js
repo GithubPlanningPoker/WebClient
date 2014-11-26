@@ -1,6 +1,7 @@
 App.module("Preferences.Views", function(Views, App, Backbone, Marionette, $, _) {
 	Views.PreferencesLayout = Backbone.Marionette.LayoutView.extend({
 		template: "#preferences-layout",
+		model: null,
 
 		onShow: function() {
 			var APIHost = this.model.get("host");
@@ -9,7 +10,7 @@ App.module("Preferences.Views", function(Views, App, Backbone, Marionette, $, _)
 			if (APIHost !== undefined && APIHost !== null && APIHost !== "")
 				this.ui.gameAPIHost.val(APIHost);
 
-			if (APIHost !== undefined && APIHost !== null && APIHost !== "")
+			if (username !== undefined && username !== null && username !== "")
 				this.ui.gameUsername.val(username);
 		},
 

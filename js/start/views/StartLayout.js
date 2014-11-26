@@ -1,6 +1,7 @@
 App.module("Start.Views", function(Views, App, Backbone, Marionette, $, _) {
 	Views.StartLayout = Backbone.Marionette.LayoutView.extend({
 		template: "#start-layout",
+		model: null,
 
 		ui: {
 			newGameForm: "#new-game-form",
@@ -16,7 +17,7 @@ App.module("Start.Views", function(Views, App, Backbone, Marionette, $, _) {
 		},
 
 		onShow: function() {
-			var username = App.Shared.Models.Settings.instance.get("username");
+			var username = this.model.get("username");
 			if (username !== undefined && username !== null && username !== "") {
 				this.ui.newGameUsername.val(username);
 				this.ui.joinGameUsername.val(username);
