@@ -17,11 +17,11 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
       App.container.show(layout);
     },
 
-    newGame: function(username) {
+    newGame: function(args) {
       var self = this;
       var host = self.preferences.get("host");
       var data = JSON.stringify({
-        username: username
+        username: args.username
       });
 
       $.ajax({
@@ -44,8 +44,8 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
       });
     },
 
-    joinGame: function(gameId, username) {
-      App.trigger("game:show", gameId);
+    joinGame: function(args) {
+      App.trigger("game:show", args.gameId);
     }
   });
 });
