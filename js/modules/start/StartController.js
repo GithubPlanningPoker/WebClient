@@ -20,19 +20,14 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
     newGame: function(username) {
       var self = this;
       var host = self.preferences.get("host");
-      var obj = {
+      var data = JSON.stringify({
         username: username
-      };
+      });
 
       $.ajax({
         method: "POST",
         url: host + "/game",
-        processData: false,
-        dataType: "json",
-        data: JSON.stringify(obj),
-        contentType: "application/json",
-        cache: false,
-        timeout: 2000
+        data: data,
       })
       .success(function(data, textStatus, jqXHR) {
         var gameId = data.gameId;
