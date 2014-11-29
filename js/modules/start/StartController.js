@@ -1,11 +1,14 @@
 App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
-  Start.Controller = {
+  Start.Controller = Backbone.Marionette.Controller.extend ({
     preferences: null,
     session: null,
 
-    show: function(){
+    initialize: function(){
       this.preferences = App.Shared.Models.Preferences.instance;
       this.session = App.Shared.Models.Session.instance;
+    },
+
+    showStart: function(){
       App.container.show(new App.Start.Views.StartLayout({ model: this.preferences }));
     },
 
@@ -44,5 +47,5 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
     joinGame: function(gameId, username) {
       App.trigger("game:show", gameId);
     }
-  };
+  });
 });
