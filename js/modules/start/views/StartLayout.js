@@ -27,14 +27,14 @@ App.module("Start.Views", function(Views, App, Backbone, Marionette, $, _) {
 		newGame: function(e) {
 			e.preventDefault();
 			var username = this.ui.newGameUsername.val();
-			App.Start.Controller.newGame(username);
+			this.trigger("start:newGame", { username: username });
 		},
 
 		joinGame: function(e) {
 			e.preventDefault();
 			var gameId = this.ui.joinGameGameId.val();
 			var username = this.ui.joinGameUsername.val();
-			App.Start.Controller.joinGame(gameId, username);
+			this.trigger("start:joinGame", { gameId: gameId, username: username });
 		}
 	});
 });

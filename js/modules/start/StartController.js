@@ -9,7 +9,12 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
     },
 
     showStart: function(){
-      App.container.show(new App.Start.Views.StartLayout({ model: this.preferences }));
+      var layout = new App.Start.Views.StartLayout({ model: this.preferences });
+
+      this.listenTo(layout, "start:newGame", this.newGame);
+      this.listenTo(layout, "start:joinGame", this.joinGame);
+
+      App.container.show(layout);
     },
 
     newGame: function(username) {
