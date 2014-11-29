@@ -1,10 +1,14 @@
 App.module("Game", function(Game, App, Backbone, Marionette, $, _) {
-  Game.Controller = {
+  Game.Controller = Backbone.Marionette.Controller.extend({
     preferences: null,
 
-    show: function(){
+    initialize: function() {
       this.preferences = App.Shared.Models.Preferences.instance;
-      App.container.show(new App.Game.Views.GameLayout());
+    },
+
+    showGame: function() {
+    	var layout = new App.Game.Views.GameLayout();
+      App.container.show(layout);
     }
-  };
+  });
 });

@@ -6,19 +6,13 @@ App.module("Game", function(Game, App, Backbone, Marionette, $, _) {
     }
   });
 
-  var API = {
-    showGame: function(gameId) {
-      App.Game.Controller.show();
-    }
-  }
-
   App.on("game:show", function(gameId) {
     Backbone.history.navigate("game/" + gameId, {trigger: true});
   });
 
   App.addInitializer(function() {
     new Game.Router({
-      controller: API
+      controller: new Game.Controller()
     })
   });
 });
