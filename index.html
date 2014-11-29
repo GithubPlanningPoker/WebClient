@@ -136,7 +136,7 @@
             <button type="button" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-remove"></span> Clear</button>
           </div>
         </div>
-        <div class="panel-body">
+        <div id="player-region" class="panel-body">
 
         </div>
       </div>
@@ -198,6 +198,14 @@
       </div>
     </div>
   </div>
+</div>
+</script>
+
+<!-- player view -->
+<script id="player-view" type="text/html">
+<div class="vote">
+  <div class="poker-card"><%= vote %></div>
+  <span class="username"><%= username %></span>
 </div>
 </script>
 
@@ -301,8 +309,11 @@
 <script type="text/javascript" src="js/modules/game/GameController.js"></script>
 <script type="text/javascript" src="js/modules/game/views/GameLayout.js"></script>
 <script type="text/javascript" src="js/modules/game/views/JoinLayout.js"></script>
+<script type="text/javascript" src="js/modules/game/views/Player.js"></script>
 <script type="text/javascript" src="js/modules/game/models/Title.js"></script>
 <script type="text/javascript" src="js/modules/game/models/Description.js"></script>
+<script type="text/javascript" src="js/modules/game/models/Player.js"></script>
+<script type="text/javascript" src="js/modules/game/models/PlayerCollection.js"></script>
 <!-- preferences -->
 <script type="text/javascript" src="js/modules/preferences/PreferencesRouter.js"></script>
 <script type="text/javascript" src="js/modules/preferences/PreferencesController.js"></script>

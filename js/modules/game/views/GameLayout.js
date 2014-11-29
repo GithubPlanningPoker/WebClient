@@ -5,6 +5,12 @@ App.module("Game.Views", function(Views, App, Backbone, Marionette, $, _) {
 		titleInterval: null,
 		descriptionModel: null,
 		descriptionInterval: null,
+		playerCollection: null,
+		playerInterval: null,
+
+		regions: {
+			playerRegion: "#player-region"
+		},
 
 		ui: {
 			title: "#title",
@@ -21,6 +27,11 @@ App.module("Game.Views", function(Views, App, Backbone, Marionette, $, _) {
       this.descriptionModel = new App.Game.Models.Description();
       this.descriptionModel.on("change:description", function(model, change) { self.updateDescription(change)});
       this.descriptionInterval = setInterval(function() { self.descriptionModel.fetch() }, 500);
+
+      this.colView = new Backbone.Marionette.CollectionView({ childView: Views.Player, collection: this.playerCollection });
+      this.playerCollection = new App.Game.Models.PlayerCollection();
+      this.playerCollection.on("add", function() { self.updatePlayers() });
+      this.playerCollection.fetch();
 		},
 
 		updateTitle: function(title) {
@@ -29,6 +40,10 @@ App.module("Game.Views", function(Views, App, Backbone, Marionette, $, _) {
 
 		updateDescription: function(description) {
 			this.ui.description.html(description);
+		},
+
+		updatePlayers: function() {
+			this.playerRegion.show(this.colView);
 		}
 	});
 });
