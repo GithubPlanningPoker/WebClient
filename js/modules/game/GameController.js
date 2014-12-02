@@ -6,7 +6,7 @@ App.module("Game", function(Game, App, Backbone, Marionette, $, _) {
       this.preferences = App.Shared.Models.Preferences.instance;
     },
 
-    showGame: function() {
+    showGame: function(gameId) {
     	var layout = new App.Game.Views.GameLayout();
       App.container.show(layout);
     }
