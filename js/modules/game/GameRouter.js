@@ -7,6 +7,7 @@ App.module("Game", function(Game, App, Backbone, Marionette, $, _) {
   });
 
   App.on("game:show", function(gameId) {
+    App.trigger("alert:dismiss");
     Backbone.history.navigate("game/" + gameId, {trigger: true});
   });
 

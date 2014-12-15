@@ -9,6 +9,7 @@ App.module("Shared.Views", function(Views, App, Backbone, Marionette, $, _) {
 		},
 
 		initialize: function(options) {
+			var self = this;
 			var options = options || {};
 
 			if (options.message)
@@ -16,6 +17,8 @@ App.module("Shared.Views", function(Views, App, Backbone, Marionette, $, _) {
 
 			if (options.alertClass && validAlertClass(options.alertClass))
 				this.alertClass = options.alertClass;
+
+			App.on("alert:dismiss", function(args) { self.destroy(); });
 		},
 
 		serializeData: function() {

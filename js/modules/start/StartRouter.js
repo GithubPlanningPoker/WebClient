@@ -8,6 +8,7 @@ App.module("Start", function(Start, App, Backbone, Marionette, $, _) {
   });
 
   App.on("start:show", function() {
+    App.trigger("alert:dismiss");
     Backbone.history.navigate("start", {trigger: true});
   });
 
