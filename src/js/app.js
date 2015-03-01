@@ -85,7 +85,7 @@
     	};
 		})
 
-		.directive('showFocus', function($timeout) {
+		.directive('showFocus', ['$timeout', function($timeout) {
 		  return function(scope, element, attrs) {
 		    scope.$watch(attrs.showFocus, 
 		      function (newValue) { 
@@ -95,7 +95,7 @@
 		        });
 		      }, true);
 		  };    
-		})
+		}])
 
 		.directive('enterSubmit', function () {
 	    return {
