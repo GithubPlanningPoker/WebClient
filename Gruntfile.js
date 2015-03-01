@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-wiredep');
 
-  // task setup 
+  grunt.loadNpmTasks('grunt-contrib-copy');
+
   grunt.registerTask('default', []);
 };
