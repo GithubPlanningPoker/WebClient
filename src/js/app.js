@@ -90,7 +90,8 @@
 		    scope.$watch(attrs.showFocus, 
 		      function (newValue) { 
 		        $timeout(function() {
-		            newValue && element[0].focus();
+		            if (newValue)
+		            	element[0].focus();
 		        });
 		      }, true);
 		  };    
@@ -112,7 +113,7 @@
 	          }
 	        });
 	      }
-	    }
+	    };
   	});
 
 })();
