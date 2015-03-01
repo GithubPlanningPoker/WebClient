@@ -1,0 +1,18 @@
+{
+  "name": "GithubPlanningPoker",
+  "version": "1.0.0",
+  "description": "Mountain Goat planning poker for Github Issues.",
+  "main": "/js/app.js",
+  "author": "mikaelce",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-wiredep": "^2.0.0"
+  },
+  "dependencies": {
+    "bower": "^1.3.12"
+  },
+  "scripts": {
+    "postinstall": "node_modules/.bin/bower install"
+  }
+}

@@ -1,0 +1,48 @@
+<div class="col-sm-4 col-sm-offset-2">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="panel-title"><span class="glyphicon glyphicon-plus"></span> Create game</div>
+    </div>
+    <div class="panel-body">
+      <form name="newGameForm" role="form" ng-submit="newGameForm.$valid && createGame(newName)" novalidate>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input name="newName" type="text" class="form-control" placeholder="Enter display name" ng-model="newName" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">
+          <span class="glyphicon glyphicon-plus"></span>
+          <span class="btn-text">Create</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-sm-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="panel-title"><span class="glyphicon glyphicon-arrow-right"></span> Join game</div>
+    </div>
+    <div class="panel-body">
+      <form role="form" name="joinGameForm" ng-submit="joinGameForm.$valid && joinGame(joinName)" novalidate>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-link"></span></div>
+            <input name="joinGameId" ng-model="joinGameId" type="text" class="form-control" placeholder="Enter game id" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input name="joinName" type="text" class="form-control" placeholder="Enter display name" ng-model="joinName" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">
+          <span class="glyphicon glyphicon-arrow-right"></span>
+          <span class="btn-text">Join</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
