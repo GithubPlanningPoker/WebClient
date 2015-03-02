@@ -97,5 +97,23 @@
 			GameTitle.update({gameId: $scope.$parent.gameId}, {title: ''});
 			GameDescription.update({gameId: $scope.$parent.gameId}, {description: ''});
 		};
-	}]);
+	}])
+
+	.filter('pokercard', function() {
+		return function(input) {
+			switch (input) {
+				case 'half':
+					return '&frac12';
+				case 'question':
+					return '?';
+				case 'infinite':
+					return '&infin;';
+				case 'break':
+					return '<span class="glyphicon glyphicon-time"></span>';
+				default:
+					return input;
+			}
+		};
+	});
+
 })();

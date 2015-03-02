@@ -38,7 +38,7 @@
     </div>
     <div class="panel-body">
       <div class="vote" ng-class="{'user' : user.username === username}" ng-click="user.username === username && !user.voted && castVote()" ng-repeat="user in users">
-        <div class="poker-card" ng-bind-html="user.vote ? user.vote : user.voted ? 'y' : '-'"></div>
+        <div class="poker-card" ng-bind-html="user.vote ? (user.vote | pokercard) : user.voted ? '&#10004;' : '-'"></div>
         <span class="username">
           <small ng-show="user.username === hostName"><span class="glyphicon glyphicon-star"></span></small>{{user.username}}
         </span>
