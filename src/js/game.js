@@ -1,7 +1,7 @@
 (function() {
 	angular.module('ghpp')
 
-	.controller('GameCtrl', ['$scope', '$rootScope', '$location', '$cookies', '$modal', 'Games', 'Users', function ($scope, $rootScope, $location, $cookies, $modal, Games, Users){
+	.controller('GameCtrl', ['$scope', '$rootScope', '$location', '$interval', '$cookies', '$modal', 'Games', 'Users', function ($scope, $rootScope, $location, $interval, $cookies, $modal, Games, Users){
 		var gameId = $location.url().split('/')[2] || null;
 
 		if (gameId != $cookies.gameId)
@@ -12,8 +12,19 @@
 		}, function (response) {
 			$rootScope.addAlert('Game with id: ' + gameId + ' not found!', 'danger');
 		});
-		Users.query({gameId: gameId}, function (data) {
+		Users.get({gameId: gameId}, function (data) {
 			$scope.users = data.users;
+		});
+
+		$scope.interval = $interval(function () {
+			Users.get({gameId: gameId}, function (data) {
+				$scope.users = data.users;
+			});
+		}, 1000);
+
+		$scope.$on('$destroy', function() {
+			if ($scope.interval)
+				$interval.cancel($scope.interval);
 		});
 
 		$scope.username = $cookies.username;
@@ -73,7 +84,7 @@
 	  };
 	}])
 
-	.controller('GameDescriptionCtrl', ['$scope', 'Games', 'GameTitle', 'GameDescription', function ($scope, Games, GameTitle, GameDescription) {
+	.controller('GameDescriptionCtrl', ['$scope', '$interval', 'Games', 'GameTitle', 'GameDescription', function ($scope, $interval, Games, GameTitle, GameDescription) {
 		$scope.titleEdit = false;
 		$scope.descrEdit = false;
 		GameTitle.get({gameId: $scope.$parent.gameId}, function (data) {
@@ -81,6 +92,22 @@
 		});
 		GameDescription.get({gameId: $scope.$parent.gameId}, function (data) {
 			$scope.gameDescr = data.description;
+		});
+
+		$scope.interval = $interval(function () {
+			if (!$scope.titleEdit)
+				GameTitle.get({gameId: $scope.$parent.gameId}, function (data) {
+					$scope.gameTitle = data.title;
+				});
+			if (!$scope.descrEdit)
+				GameDescription.get({gameId: $scope.$parent.gameId}, function (data) {
+					$scope.gameDescr = data.description;
+				});
+		}, 1000);
+
+		$scope.$on('$destroy', function() {
+			if ($scope.interval)
+				$interval.cancel($scope.interval);
 		});
 
 		$scope.submitTitle = function (gameTitle) {
