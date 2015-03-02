@@ -1,5 +1,5 @@
 (function() {
-	angular.module('ghpp-start', [])
+	angular.module('ghpp')
 
 	.controller('StartCtrl', ['$scope', '$rootScope', '$location', '$cookies', 'Games', 'Users', function ($scope, $rootScope, $location, $cookies, Games, Users){
 

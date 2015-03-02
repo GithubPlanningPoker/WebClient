@@ -1,5 +1,5 @@
 (function() {
-	angular.module('ghpp-join', [])
+	angular.module('ghpp')
 
 	.controller('JoinCtrl', ['$scope', '$rootScope', '$location', '$cookies', 'Games', 'Users', function ($scope, $rootScope, $location, $cookies, Games, Users){
 		$scope.gameId = $location.url().split('/')[2];

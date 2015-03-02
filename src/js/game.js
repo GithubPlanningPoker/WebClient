@@ -1,5 +1,5 @@
 (function() {
-	angular.module('ghpp-game', [])
+	angular.module('ghpp')
 
 	.controller('GameCtrl', ['$scope', '$rootScope', '$location', '$cookies', '$modal', 'Games', 'Users', function ($scope, $rootScope, $location, $cookies, $modal, Games, Users){
 		var gameId = $location.url().split('/')[2] || null;
