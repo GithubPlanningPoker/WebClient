@@ -14,6 +14,7 @@
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-uglify": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-html-angular-validate": "^0.4.0",
     "grunt-processhtml": "^0.3.7"
   },
   "dependencies": {

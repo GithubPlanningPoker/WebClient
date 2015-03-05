@@ -6,6 +6,24 @@ module.exports = function(grunt) {
       all: ['src/js/**.js']
     },
 
+    htmlangular: {
+      dist: {
+        options: {
+          tmplext: 'htm',
+          customtags: [
+              'alert'
+          ],
+          customattrs: [
+              'show-focus',
+              'enter-submit'
+          ]
+        },
+        files: {
+          src: ['src/default.html', 'src/partials/*.htm']
+        },
+      }
+    },
+
     processhtml: {
       dist: {
         files: {
@@ -69,6 +87,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-html-angular-validate');
   grunt.loadNpmTasks('grunt-processhtml');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
