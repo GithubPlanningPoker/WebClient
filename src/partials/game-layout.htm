@@ -1,4 +1,4 @@
-<div class="col-sm-6" ng-controller="GameDescriptionCtrl">
+<div class="col-sm-6 col-lg-4 col-lg-offset-2" ng-controller="GameDescriptionCtrl">
   <div class="panel panel-primary">
     <div class="panel-heading clearfix">
       <div class="panel-title">
@@ -25,7 +25,7 @@
     </div>
   </div>
 </div>
-<div class="col-sm-6">
+<div class="col-sm-6 col-lg-4">
   <div class="panel panel-primary ">
     <div class="panel-heading">
       <div class="panel-title">
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="panel-body">
-      <div class="vote" ng-class="{'user' : user.username === username}" ng-click="user.username === username && !user.voted && castVote()" ng-repeat="user in users">
+      <div class="vote" ng-class="{'user' : user.username === username}" ng-click="user.username === username && !user.voted && castVote()" ng-repeat="user in users | orderBy : user.username">
         <div class="poker-card" ng-bind-html="user.vote ? (user.vote | pokercard) : user.voted ? '&#10004;' : '-'"></div>
         <span class="username">
           <small ng-show="user.username === hostName"><span class="glyphicon glyphicon-star"></span></small>{{user.username}}
