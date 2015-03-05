@@ -88,7 +88,10 @@ module.exports = function(grunt) {
           'dist/style.min.css': 'src/css/style.css'
         }
       }
-    }
+    },
+    clean: {
+      dist: ["html-angular-validate-report.json"]
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -102,6 +105,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint', 'htmlangular', 'csslint', 'uglify', 'copy', 'processhtml', 'htmlmin', 'cssmin']);
-  grunt.registerTask('check', ['jshint', 'htmlangular', 'csslint'])
+  grunt.registerTask('default', ['jshint', 'htmlangular', 'csslint', 'uglify', 'copy', 'processhtml', 'htmlmin', 'cssmin', 'clean']);
+  grunt.registerTask('check', ['jshint', 'htmlangular', 'csslint', 'clean'])
 };
