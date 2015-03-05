@@ -6,6 +6,15 @@ module.exports = function(grunt) {
       all: ['src/js/**.js']
     },
 
+    csslint: {
+      dist: {
+        options: {
+          import: false
+        },
+        src: ['src/css/*.css']
+      }
+    },
+
     htmlangular: {
       dist: {
         options: {
@@ -84,6 +93,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -92,5 +102,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint', 'uglify', 'copy', 'processhtml', 'htmlmin', 'cssmin']);
+  grunt.registerTask('default', ['jshint', 'htmlangular', 'csslint', 'uglify', 'copy', 'processhtml', 'htmlmin', 'cssmin']);
+  grunt.registerTask('check', ['jshint', 'htmlangular', 'csslint'])
 };

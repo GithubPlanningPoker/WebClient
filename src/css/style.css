@@ -2,7 +2,7 @@ body {
 	padding: 5px;
 }
 
-div.vote {
+.vote {
   display: inline-block;
   margin: 10px;
   padding: 10px;
@@ -10,12 +10,12 @@ div.vote {
   border-radius: 5px;
 }
 
-div.vote.user, div.vote.user div.poker-card {
+div.user, div.user div.poker-card {
   border-color: #357ebd;
   color: #357ebd;
 }
 
-div.vote.user:hover, div.vote.pickable:hover {
+.user:hover, .pickable:hover {
   background-color: #f5f5f5;
   cursor:  pointer;
 }
@@ -23,9 +23,8 @@ div.vote.user:hover, div.vote.pickable:hover {
 div.poker-card {
   margin: auto;
   width: 50px;
-  height: 80px;
-  font-size: 20px;
   line-height: 80px;
+  font-size: 20px;
   text-align: center;
   border: 2px solid black;
   border-radius: 5px;
@@ -37,7 +36,7 @@ div.poker-card {
   user-select: none;
 }
 
-div.selected div.poker-card {
+.selected div.poker-card {
   border-color: #357ebd;
   color: #357ebd;
   font-weight: bold;
