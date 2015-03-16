@@ -43,8 +43,8 @@
 			{text: '20', value: '20'},
 			{text: '40', value: '40'},
 			{text: '100', value: '100'},
-			{text: '?', value: 'question'},
-			{text: '&infin;', value: 'infinite'},
+			{text: '?', value: '?'},
+			{text: '&infin;', value: 'inf'},
 			{text: '<span class="glyphicon glyphicon-time"></span>', value: 'break'}
 		];
 
