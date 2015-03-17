@@ -158,9 +158,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.config('watch', {
-    options: {
-      livereload: true
-    },
     gruntfile: {
       files: 'Gruntfile.js',
       tasks: ['jshint:gruntfile'],
