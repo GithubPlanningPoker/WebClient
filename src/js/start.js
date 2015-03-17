@@ -21,6 +21,7 @@
 			var user = new Users({gameId: $scope.joinGameId});
 			user.username = username;
 			user.$save(user, function (response) {
+				$cookies.gameId = $scope.joinGameId;
 				$cookies.userId = response.userId;
 				$cookies.username = username;
 				$location.url('/game/' + $scope.joinGameId);
