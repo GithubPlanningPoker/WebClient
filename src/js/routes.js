@@ -4,19 +4,19 @@
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
       $routeProvider
         .when('/start', {
-          templateUrl: 'partials/start-layout.htm',
+          templateUrl: 'partials/start.partial.htm',
           controller: 'StartCtrl'
         })
         .when('/join/:gameId', {
-          templateUrl: 'partials/join-layout.htm',
+          templateUrl: 'partials/join.partial.htm',
           controller: 'JoinCtrl'
         })
         .when('/game/:gameId', {
-          templateUrl: 'partials/game-layout.htm',
+          templateUrl: 'partials/game.partial.htm',
           controller: 'GameCtrl'
           })
         .otherwise({
-          templateUrl: 'partials/start-layout.htm',
+          templateUrl: 'partials/start.partial.htm',
           controller: 'StartCtrl'
         });
     }]);

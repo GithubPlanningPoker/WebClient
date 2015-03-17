@@ -50,7 +50,7 @@
 
 	  $scope.castVote = function () {
 	    var modalInstance = $modal.open({
-	      templateUrl: 'partials/vote-modal.htm',
+	      templateUrl: 'partials/vote-modal.partial.htm',
 	      controller: 'GameVoteCtrl',
 	      size: 'lg',
 	      resolve: {
