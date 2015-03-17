@@ -1,9 +1,9 @@
 {
-  "name": "GithubPlanningPoker",
+  "name": "GitHubPlanningPoker",
   "version": "1.0.0",
   "description": "Mountain Goat planning poker for Github Issues.",
   "main": "/js/app.js",
-  "author": "mikaelce",
+  "author": "mikaelec",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
