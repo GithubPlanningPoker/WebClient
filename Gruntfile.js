@@ -150,7 +150,10 @@ module.exports = function(grunt) {
   grunt.config('clean', {
     all: ['html-angular-validate-report.json'],
     dist: ['dist/'],
-    dev: ['C:/inetpub/wwwroot/ghpp/', '!C:/inetpub/wwwroot/ghpp/api/']
+    dev: {
+      src: ['C:/inetpub/wwwroot/ghpp/*', '!C:/inetpub/wwwroot/ghpp/api'],
+      options: { force: true }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -179,7 +182,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('dev', ['uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
+  grunt.registerTask('dev', ['clean:dev', 'uglify:dev', 'copy:dev', 'processhtml:dev', 'htmlmin:dev', 'cssmin:dev']);
   grunt.registerTask('dist', ['clean:dist', 'uglify:dist', 'copy:dist', 'processhtml:dist', 'htmlmin:dist', 'cssmin:dist']);
   grunt.registerTask('check', ['jshint', 'csslint', 'htmlangular', 'clean:all']);
 };
