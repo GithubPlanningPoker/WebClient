@@ -2,6 +2,8 @@
   angular.module('ghpp')
 
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+      $locationProvider.html5Mode({ enabled: true });
+      $locationProvider.hashPrefix('!');
       $routeProvider
         .when('/start', {
           templateUrl: 'partials/start.partial.htm',
