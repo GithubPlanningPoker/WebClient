@@ -111,8 +111,9 @@ module.exports = function(grunt) {
           'angular-sanitize/angular-sanitize.min.js'
           ],
           dest: 'dist/external'
-      },
-      { src: 'src/favicon.ico', dest: 'dist/favicon.ico' }
+        },
+        { src: 'src/favicon.ico', dest: 'dist/favicon.ico' },
+        { src: 'web.config', dest: 'dist/web.config' }
       ]
     },
     dev: {
@@ -126,8 +127,9 @@ module.exports = function(grunt) {
           'angular-sanitize/angular-sanitize.js'
           ],
           dest: 'C:/inetpub/wwwroot/ghpp/external'
-      },
-      { src: 'src/favicon.ico', dest: 'C:/inetpub/wwwroot/ghpp/favicon.ico' }
+        },
+        { src: 'src/favicon.ico', dest: 'C:/inetpub/wwwroot/ghpp/favicon.ico' },
+        { src: 'web.config', dest: 'C:/inetpub/wwwroot/ghpp/web.config' }
       ]
     }
   });
